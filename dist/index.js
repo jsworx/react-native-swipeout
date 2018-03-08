@@ -334,13 +334,14 @@ var Swipeout = (0, _createReactClass2.default)({
     if (this.props.onOpen) this.props.onOpen(this.props.sectionID, this.props.rowID);
   },
 
-  _openRight: function _openRight() {
+  _openRight: function _openRight(myWidth) {
     var _this3 = this;
 
     this.refs.swipeoutContent.measure(function (ox, oy, width, height) {
+      var width = myWidth ? myWidth : width / 5;
       _this3.setState({
-        btnWidth: width / 5,
-        btnsRightWidth: _this3.props.right ? width / 5 * _this3.props.right.length : 0
+        btnWidth: width,
+        btnsRightWidth: _this3.props.right ? width * _this3.props.right.length : 0
       }, function () {
         _this3._tweenContent('contentPos', -_this3.state.btnsRightWidth);
         _this3._callOnOpen();
